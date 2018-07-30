@@ -1,5 +1,6 @@
 {
   "name": "ha-ppy",
+  "private": true,
   "version": "1.0.0",
   "description": "",
   "main": "index.html",
@@ -12,7 +13,7 @@
     "url": "git+https://github.com/moeHa/ha-ppy.git"
   },
   "author": "",
-  "license": "GPL-v3",
+  "license": "GPL-3.0",
   "bugs": {
     "url": "https://github.com/moeHa/ha-ppy/issues"
   },
