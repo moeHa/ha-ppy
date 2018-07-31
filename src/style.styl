@@ -1,0 +1,223 @@
+$body-size = 200px
+$body-color = #6b6
+$mouth-color = #e77
+
+*
+  box-sizing
+  font-size 0
+  line-height 0
+body
+  background #f0f0f0
+#frog
+  cursor pointer
+  position fixed
+  left 50%
+  top 50%
+  transform translate(-50%, -50%)
+  width $body-size
+  height $body-size
+  &:hover .mouth
+    width 20%
+    border ($body-size/20) solid #e77
+    border-left 0
+    border-right 0;
+    border-top-color transparent
+    z-index 1
+    position absolute
+    top 9%
+    left 0
+    right 0
+    margin auto
+    border-radius 20% 20% 100% 100%
+  &.happy
+    .add-life
+      display block
+    .mouth
+      border-radius 100%
+      background $mouth-color
+      height 5%
+      top 18%
+      border 0
+    .eyeball
+      border-radius 0
+      height 5%
+      &::before,
+      &::after
+        display none
+.body
+  transform scale(1.1, 1)
+  width $body-size
+  height $body-size
+  background $body-color
+  border-radius 100% 100% 70% 70% / 100% 100% 100% 100%
+.kyte
+  z-index 1
+  bottom 1%
+  left 0
+  right 0
+  margin auto
+  position absolute
+  width ($body-size / 1.25)
+  height ($body-size / 1.45)
+  background white
+  border-radius 100% 100% 70% 70% / 100% 100%
+  transform scale(1.05, 1)
+.eye
+  z-index 1
+  border-radius 100%
+  background $body-color
+  width 27%
+  height 27%
+  position absolute
+  .eyeball
+    width 70%
+    height 70%
+    background black
+    content ''
+    position absolute
+    border-radius 100%
+    top 50%
+    left 50%
+    transform translate(-50%, -50%)
+    &::before
+      animation eyeball .5s infinite
+      width 25%
+      height 25%
+      position absolute
+      content ''
+      background white
+      z-index 1
+      border-radius 100%
+      top 20%
+      left 55%
+  &.left
+    // left 0
+  &.right
+    right 0
+.nose
+  position absolute
+  left 0
+  right 0
+  top 10%
+  margin auto
+  width 10%
+  &::before,
+  &::after
+    position absolute
+    content ''
+    background black
+    border-radius 100% 0 100% 0
+    border ($body-size / 100) solid black
+  &::before
+    right 75%
+  &::after
+    left 75%
+    transform scale(1, -1)
+.mouth
+  width 20%
+  height 5%
+  border 1px solid $mouth-color
+  border-top none
+  z-index 1
+  position absolute
+  top 18%
+  left 0
+  right 0
+  margin auto
+  border-radius ($body-size / 20) ($body-size / 20) 100% 100%
+.arm
+  z-index 1
+  position absolute
+  top 50%
+  background $body-color
+  border-radius 100%
+  width 25%
+  height 15%
+  &.left
+    left 0
+    transform rotate(20deg)
+    animation arm-left 2s infinite
+  &.right
+    right 0
+    transform rotate(-20deg)
+    animation arm-right 2s infinite
+.foot
+  z-index 1
+  position absolute
+  bottom 0
+  background $body-color
+  border-radius 100%
+  width 18%
+  height 30%
+  bottom 2%
+  &::after
+    position absolute
+    content ''
+    bottom 0
+    border-radius 100%
+    width 120%
+    height 35%
+  &.left
+    transform rotate(-24deg)
+    left -8%
+    &::after
+      right 10%
+      transform rotate(20deg)
+      background $body-color
+  &.right
+    transform rotate(24deg)
+    right -8%
+    &::after
+      left 10%
+      transform rotate(-20deg)
+      background $body-color
+.add-life
+  height ($body-size / 5)
+  line-height ($body-size / 5)
+  font-size ($body-size / 5)
+  transform translate(0, 0)
+  animation add-life 1s infinite
+  position absolute
+  width 100%
+  text-align center
+  top -($body-size / 5)
+  margin auto
+  display none
+@keyframes arm-left
+  0%
+    transform rotate(10deg)
+  50%
+    transform rotate(35deg)
+  100%
+    transform rotate(10deg)
+    
+@keyframes arm-right
+  0%
+    transform rotate(-35deg)
+  50%
+    transform rotate(-10deg)
+  100%
+    transform rotate(-35deg)
+@keyframes eyeball
+  0%
+    transform translate(2%, 2%) scale(1.1)
+  25%
+    transform translate(-2%, 2%) scalse(0.9)
+  50%
+    transform translate(-2%, -2%) slace(1.1)
+  75%
+    transform translate(2%, -2%)
+    scale(0.9)
+  100%
+    transform translate(2%, 2%)
+    scale(1.1)
+@keyframes add-life
+  0%
+    opacity 0
+    transform translate(0, 0)
+  50%
+    opacity 1
+    transform translate(0, -100%)
+  100%
+    opacity 0
+    transform translate(0, -200%)

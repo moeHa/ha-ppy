@@ -1,0 +1,24 @@
+{
+  "name": "ha-ppy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "serve": "parcel ./src/index.html --out-dir docs",
+    "build": "parcel build ./src/index.html --out-dir docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/moeHa/ha-ppy.git"
+  },
+  "author": "",
+  "license": "GPL-v3",
+  "bugs": {
+    "url": "https://github.com/moeHa/ha-ppy/issues"
+  },
+  "homepage": "https://github.com/moeHa/ha-ppy#readme",
+  "devDependencies": {
+    "parcel-bundler": "^1.9.7",
+    "stylus": "^0.54.5"
+  }
+}
