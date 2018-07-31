@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf8">
+        <title>ha-ppy</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+        * {
+            box-sizing: border-box;
+            font-size: 0;
+            line-height: 0;
+        }
+        body {
+            background: #f0f0f0;
+        }
+        #frog {
+            cursor: pointer;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            -webkit-transform: translate(-50%, -50%);
+                    transform: translate(-50%, -50%);
+            width: 200px;
+            height: 200px;
+        }
+        #frog:hover .mouth {
+            width: 20%;
+            border: 10px solid #e77;
+            border-left: 0;
+            border-right: 0;
+            border-top-color: transparent;
+            z-index: 1;
+            position: absolute;
+            top: 9%;
+            left: 0;
+            right: 0;
+            margin: auto;
+            border-radius: 20% 20% 100% 100%;
+        }
+        #frog.happy .add-life {
+            display: block;
+        }
+        #frog.happy .mouth {
+            border-radius: 100%;
+            background: #e77;
+            height: 5%;
+            top: 18%;
+            border: 0;
+        }
+        #frog.happy .eyeball {
+            border-radius: 0;
+            height: 5%;
+        }
+        #frog.happy .eyeball::before,
+        #frog.happy .eyeball::after {
+            display: none;
+        }
+        .body {
+            -webkit-transform: scale(1.1, 1);
+                    transform: scale(1.1, 1);
+            width: 200px;
+            height: 200px;
+            background: #6b6;
+            border-radius: 100% 100% 70% 70%/100% 100% 100% 100%;
+        }
+        .kyte {
+            z-index: 1;
+            bottom: 1%;
+            left: 0;
+            right: 0;
+            margin: auto;
+            position: absolute;
+            width: 160px;
+            height: 137.93103448275863px;
+            background: #fff;
+            border-radius: 100% 100% 70% 70%/100% 100%;
+            -webkit-transform: scale(1.05, 1);
+                    transform: scale(1.05, 1);
+        }
+        .eye {
+            z-index: 1;
+            border-radius: 100%;
+            background: #6b6;
+            width: 27%;
+            height: 27%;
+            position: absolute;
+        }
+        .eye .eyeball {
+            width: 70%;
+            height: 70%;
+            background: #000;
+            content: '';
+            position: absolute;
+            border-radius: 100%;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+                    transform: translate(-50%, -50%);
+        }
+        .eye .eyeball::before {
+            -webkit-animation: eyeball 0.5s infinite;
+                    animation: eyeball 0.5s infinite;
+            width: 25%;
+            height: 25%;
+            position: absolute;
+            content: '';
+            background: #fff;
+            z-index: 1;
+            border-radius: 100%;
+            top: 20%;
+            left: 55%;
+        }
+        .eye.right {
+            right: 0;
+        }
+        .nose {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 10%;
+            margin: auto;
+            width: 10%;
+        }
+        .nose::before,
+        .nose::after {
+            position: absolute;
+            content: '';
+            background: #000;
+            border-radius: 100% 0 100% 0;
+            border: 2px solid #000;
+        }
+        .nose::before {
+            right: 75%;
+        }
+        .nose::after {
+            left: 75%;
+            -webkit-transform: scale(1, -1);
+                    transform: scale(1, -1);
+        }
+        .mouth {
+            width: 20%;
+            height: 5%;
+            border: 1px solid #e77;
+            border-top: none;
+            z-index: 1;
+            position: absolute;
+            top: 18%;
+            left: 0;
+            right: 0;
+            margin: auto;
+            border-radius: 10px 10px 100% 100%;
+        }
+        .arm {
+            z-index: 1;
+            position: absolute;
+            top: 50%;
+            background: #6b6;
+            border-radius: 100%;
+            width: 25%;
+            height: 15%;
+        }
+        .arm.left {
+            left: 0;
+            -webkit-transform: rotate(20deg);
+                    transform: rotate(20deg);
+            -webkit-animation: arm-left 2s infinite;
+                    animation: arm-left 2s infinite;
+            }
+            .arm.right {
+            right: 0;
+            -webkit-transform: rotate(-20deg);
+                    transform: rotate(-20deg);
+            -webkit-animation: arm-right 2s infinite;
+                    animation: arm-right 2s infinite;
+        }
+        .foot {
+            z-index: 1;
+            position: absolute;
+            bottom: 0;
+            background: #6b6;
+            border-radius: 100%;
+            width: 18%;
+            height: 30%;
+            bottom: 2%;
+        }
+        .foot::after {
+            position: absolute;
+            content: '';
+            bottom: 0;
+            border-radius: 100%;
+            width: 120%;
+            height: 35%;
+        }
+        .foot.left {
+            -webkit-transform: rotate(-24deg);
+                    transform: rotate(-24deg);
+            left: -8%;
+        }
+        .foot.left::after {
+            right: 10%;
+            -webkit-transform: rotate(20deg);
+                    transform: rotate(20deg);
+            background: #6b6;
+        }
+        .foot.right {
+            -webkit-transform: rotate(24deg);
+                    transform: rotate(24deg);
+            right: -8%;
+        }
+        .foot.right::after {
+            left: 10%;
+            -webkit-transform: rotate(-20deg);
+                    transform: rotate(-20deg);
+            background: #6b6;
+        }
+        .add-life {
+            height: 40px;
+            line-height: 40px;
+            font-size: 40px;
+            -webkit-transform: translate(0, 0);
+                    transform: translate(0, 0);
+            -webkit-animation: add-life 1s infinite;
+                    animation: add-life 1s infinite;
+            position: absolute;
+            width: 100%;
+            text-align: center;
+            top: -40px;
+            margin: auto;
+            display: none;
+        }
+        @-webkit-keyframes arm-left {
+            0% {
+                -webkit-transform: rotate(10deg);
+                        transform: rotate(10deg);
+            }
+            50% {
+                -webkit-transform: rotate(35deg);
+                        transform: rotate(35deg);
+            }
+            100% {
+                -webkit-transform: rotate(10deg);
+                        transform: rotate(10deg);
+            }
+        }
+        @keyframes arm-left {
+            0% {
+                -webkit-transform: rotate(10deg);
+                        transform: rotate(10deg);
+            }
+            50% {
+                -webkit-transform: rotate(35deg);
+                        transform: rotate(35deg);
+            }
+            100% {
+                -webkit-transform: rotate(10deg);
+                        transform: rotate(10deg);
+            }
+        }
+        @-webkit-keyframes arm-right {
+            0% {
+                -webkit-transform: rotate(-35deg);
+                        transform: rotate(-35deg);
+            }
+            50% {
+                -webkit-transform: rotate(-10deg);
+                        transform: rotate(-10deg);
+            }
+            100% {
+                -webkit-transform: rotate(-35deg);
+                        transform: rotate(-35deg);
+            }
+        }
+        @keyframes arm-right {
+            0% {
+                -webkit-transform: rotate(-35deg);
+                        transform: rotate(-35deg);
+            }
+            50% {
+                -webkit-transform: rotate(-10deg);
+                        transform: rotate(-10deg);
+            }
+            100% {
+                -webkit-transform: rotate(-35deg);
+                        transform: rotate(-35deg);
+            }
+        }
+        @-webkit-keyframes eyeball {
+            0% {
+                -webkit-transform: translate(2%, 2%) scale(1.1);
+                        transform: translate(2%, 2%) scale(1.1);
+            }
+            25% {
+                -webkit-transform: translate(-2%, 2%) scalse(0.9);
+                        transform: translate(-2%, 2%) scalse(0.9);
+            }
+            50% {
+                -webkit-transform: translate(-2%, -2%) slace(1.1);
+                        transform: translate(-2%, -2%) slace(1.1);
+            }
+            75% {
+                -webkit-transform: translate(2%, -2%);
+                        transform: translate(2%, -2%);
+            }
+            100% {
+                -webkit-transform: translate(2%, 2%);
+                        transform: translate(2%, 2%);
+            }
+        }
+        @keyframes eyeball {
+            0% {
+                -webkit-transform: translate(2%, 2%) scale(1.1);
+                        transform: translate(2%, 2%) scale(1.1);
+            }
+            25% {
+                -webkit-transform: translate(-2%, 2%) scalse(0.9);
+                        transform: translate(-2%, 2%) scalse(0.9);
+            }
+            50% {
+                -webkit-transform: translate(-2%, -2%) slace(1.1);
+                        transform: translate(-2%, -2%) slace(1.1);
+            }
+            75% {
+                -webkit-transform: translate(2%, -2%);
+                        transform: translate(2%, -2%);
+            }
+            100% {
+                -webkit-transform: translate(2%, 2%);
+                        transform: translate(2%, 2%);
+            }
+        }
+        @-webkit-keyframes add-life {
+            0% {
+                opacity: 0;
+                -webkit-transform: translate(0, 0);
+                        transform: translate(0, 0);
+            }
+            50% {
+                opacity: 1;
+                -webkit-transform: translate(0, -100%);
+                        transform: translate(0, -100%);
+            }
+            100% {
+                opacity: 0;
+                -webkit-transform: translate(0, -200%);
+                        transform: translate(0, -200%);
+            }
+        }
+        @keyframes add-life {
+            0% {
+                opacity: 0;
+                -webkit-transform: translate(0, 0);
+                        transform: translate(0, 0);
+            }
+            50% {
+                opacity: 1;
+                -webkit-transform: translate(0, -100%);
+                        transform: translate(0, -100%);
+            }
+            100% {
+                opacity: 0;
+                -webkit-transform: translate(0, -200%);
+                        transform: translate(0, -200%);
+            }
+        }
+        </style>
+    </head>
+    <body>
+        <div id="frog">
+            <div class="eye left">
+                <div class="eyeball"></div>
+            </div>
+            <div class="eye right">
+                <div class="eyeball"></div>
+            </div>
+            <div class="kyte"></div>
+            <div class="body"></div>
+            <div class="nose"></div>
+            <div class="mouth"></div>
+            <div class="arm left"></div>
+            <div class="arm right"></div>
+            <div class="foot left"></div>
+            <div class="foot right"></div>
+            <div class="add-life">+1s</div>
+        </div>
+        <script>
+            var EYES_LIMIT = 2;
+            var $eyes = document.querySelectorAll('.eyeball');
+            var $frog = document.querySelector('#frog');
+
+            var isHappy = false;
+
+            function moveEyes(rateX, rateY) {
+                return function ($eye, index) {
+                    var offsetX = +!isHappy && EYES_LIMIT * 2 * rateX - EYES_LIMIT;
+                    var offsetY = +!isHappy && EYES_LIMIT * 2 * rateY - EYES_LIMIT;
+                    $eye.style.marginLeft = offsetX + 'px';
+                    $eye.style.marginTop = offsetY + 'px';
+                };
+            }
+
+            document.addEventListener('mousemove', function (e) {
+                var h = window.innerHeight;
+                var w = window.innerWidth;
+                var clientX = e.clientX;
+                var clientY = e.clientY;
+                var rateX = clientX / w;
+                var rateY = clientY / h;
+                $eyes.forEach(moveEyes(rateX, rateY));
+            });
+
+            $frog.addEventListener('mousedown', function (e) {
+                isHappy = true;
+                $eyes.forEach(moveEyes(0, 0));
+                $frog.classList.add('happy');
+            });
+
+            $frog.addEventListener('mouseup', function (e) {
+                isHappy = false;
+                $frog.classList.remove('happy');
+            });
+        </script>
+    </body>
+</html>
