@@ -30,6 +30,11 @@ body
     margin auto
     border-radius 20% 20% 100% 100%
   &.happy
+    .arm
+      &.left
+        animation arm-left-happy .5s infinite
+      &.right
+        animation arm-right-happy .5s infinite
     .add-life
       display block
     .mouth
@@ -198,6 +203,22 @@ body
     transform rotate(-10deg)
   100%
     transform rotate(-35deg)
+
+@keyframes arm-left-happy
+  0%
+    transform rotate(5deg)
+  50%
+    transform rotate(40deg)
+  100%
+    transform rotate(5deg)
+@keyframes arm-right-happy
+  0%
+    transform rotate(-5deg)
+  50%
+    transform rotate(-40deg)
+  100%
+    transform rotate(-5deg)
+
 @keyframes eyeball
   0%
     transform translate(2%, 2%) scale(1.1)

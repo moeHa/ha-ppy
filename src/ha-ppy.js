@@ -1,6 +1,6 @@
 import './style.styl';
 
-const EYES_LIMIT = 2;
+const EYES_LIMIT = 5;
 const $eyes = document.querySelectorAll('.eyeball')
 const $frog = document.querySelector('#frog')
 
