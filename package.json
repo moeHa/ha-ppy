@@ -6,7 +6,7 @@
   "main": "index.html",
   "scripts": {
     "serve": "parcel ./src/index.html --out-dir docs",
-    "build": "parcel build ./src/index.html --out-dir docs"
+    "build": "parcel build ./src/index.html --out-dir docs --public-url ."
   },
   "repository": {
     "type": "git",
