@@ -17,7 +17,7 @@ function moveEyes(rateX, rateY) {
         const offsetY = +!isHappy && EYES_LIMIT * 2 * rateY - EYES_LIMIT;
         $eye.style.marginLeft = `${offsetX}px`;
         $eye.style.marginTop = `${offsetY}px`;
-    }
+    };
 }
 
 document.addEventListener('mousemove', e => {

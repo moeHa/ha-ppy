@@ -3,4 +3,4 @@ parcelRequire=function(e,r,n,t){var i="function"==typeof parcelRequire&&parcelRe
 },{}],"Yw6J":[function(require,module,exports) {
 "use strict";require("./style.styl");var e=5,n=document.querySelectorAll(".eyeball"),t=document.querySelector("#frog"),i=!1;function o(n,t){return function(o,r){var c=+!i&&2*e*n-e,d=+!i&&2*e*t-e;o.style.marginLeft=c+"px",o.style.marginTop=d+"px"}}function r(e){i=!0,n.forEach(o(0,0)),t.classList.add("happy")}function c(e){i=!1,t.classList.remove("happy")}document.addEventListener("mousemove",function(e){var t=window.innerHeight,i=window.innerWidth,r=e.clientX/i,c=e.clientY/t;n.forEach(o(r,c))}),document.addEventListener("touchmove",function(e){var t=window.innerHeight,i=window.innerWidth,r=e.touches[0],c=r.clientX/i,d=r.clientY/t;n.forEach(o(c,d))}),t.addEventListener("mousedown",r),t.addEventListener("mouseup",c),t.addEventListener("touchstart",r),t.addEventListener("touchend",c);
 },{"./style.styl":"TqC0"}]},{},["Yw6J"], null)
-//# sourceMappingURL=ha-ppy.eecb61ab.map
+//# sourceMappingURL=ha-ppy.65258ea2.map
